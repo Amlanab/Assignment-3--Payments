@@ -3,7 +3,6 @@
 A production-ready payment processing backend built with Spring Boot that integrates with Authorize.Net for payment processing. This service provides RESTful APIs for handling payment transactions including purchases, authorizations, captures, voids, and refunds.
 
 ## Project Overview
-
 This payment processing backend implements a comprehensive payment system with the following capabilities:
 
 - **Payment Operations**: Purchase, Authorize, Capture, Void (Cancel), and Refund transactions
@@ -15,7 +14,6 @@ This payment processing backend implements a comprehensive payment system with t
 - **Comprehensive Error Handling**: Structured error responses for all failure scenarios
 
 ## Tech Stack
-
 - **Framework**: Spring Boot 3.2.0
 - **Language**: Java 17
 - **Build Tool**: Maven
@@ -30,7 +28,6 @@ This payment processing backend implements a comprehensive payment system with t
   - Bean Validation (request validation)
 
 ## Prerequisites
-
 - Docker and Docker Compose installed
 - Authorize.Net sandbox account credentials
 - (Optional) Maven 3.8+ and JDK 17+ for local development
@@ -38,14 +35,12 @@ This payment processing backend implements a comprehensive payment system with t
 ## Quick Start with Docker Compose
 
 ### 1. Clone the Repository
-
 ```bash
 git clone <repository-url>
 cd assignment\ 3
 ```
 
 ### 2. Configure Environment Variables
-
 Create a `.env` file in the project root (or export environment variables):
 
 ```bash
@@ -61,7 +56,6 @@ JWT_SECRET=your-256-bit-secret-key-change-in-production-minimum-32-characters
 ```
 
 ### 3. Start the Services
-
 ```bash
 docker-compose up -d
 ```
@@ -71,7 +65,6 @@ This will start:
 - Spring Boot application on port `8080`
 
 ### 4. Verify the Services
-
 Check if the services are running:
 
 ```bash
@@ -85,13 +78,11 @@ docker-compose logs -f app
 ```
 
 ### 5. Access the Application
-
 - **API Base URL**: `http://localhost:8080/api`
 - **Swagger UI**: `http://localhost:8080/api/swagger-ui.html`
 - **API Docs**: `http://localhost:8080/api/api-docs`
 
 ### 6. Stop the Services
-
 ```bash
 docker-compose down
 ```
@@ -105,7 +96,6 @@ docker-compose down -v
 ## Authorize.Net Sandbox Configuration
 
 ### Getting Sandbox Credentials
-
 1. **Create an Account**: Sign up for a free Authorize.Net sandbox account at [developer.authorize.net](https://developer.authorize.net/)
 
 2. **Get API Credentials**:
@@ -115,7 +105,6 @@ docker-compose down -v
    - Copy your **API Login ID** and **Transaction Key**
 
 ### Configuration Options
-
 #### Option 1: Environment Variables (Recommended)
 
 Set environment variables before running Docker Compose:
@@ -150,7 +139,6 @@ authorize-net:
 ```
 
 ### Test Card Numbers
-
 Authorize.Net sandbox provides test card numbers for testing:
 
 | Card Number | Card Type | Description |
@@ -167,7 +155,6 @@ Authorize.Net sandbox provides test card numbers for testing:
 ## Example API Flows
 
 ### 1. Authentication Flow
-
 #### Register a New User
 
 ```bash
@@ -213,7 +200,6 @@ curl -X POST http://localhost:8080/api/auth/refresh \
 ```
 
 ### 2. Payment Flow: Purchase (Authorize + Capture in one step)
-
 ```bash
 curl -X POST http://localhost:8080/api/payments/purchase \
   -H "Content-Type: application/json" \
@@ -258,7 +244,6 @@ curl -X POST http://localhost:8080/api/payments/purchase \
 ```
 
 ### 3. Payment Flow: Authorize Only
-
 ```bash
 curl -X POST http://localhost:8080/api/payments/authorize \
   -H "Content-Type: application/json" \
@@ -303,7 +288,6 @@ curl -X POST http://localhost:8080/api/payments/authorize \
 ```
 
 ### 4. Payment Flow: Capture (After Authorization)
-
 ```bash
 curl -X POST http://localhost:8080/api/payments/capture \
   -H "Content-Type: application/json" \
@@ -337,7 +321,6 @@ curl -X POST http://localhost:8080/api/payments/capture \
 ```
 
 ### 5. Payment Flow: Cancel/Void (Before Capture)
-
 ```bash
 curl -X POST http://localhost:8080/api/payments/cancel \
   -H "Content-Type: application/json" \
@@ -369,7 +352,6 @@ curl -X POST http://localhost:8080/api/payments/cancel \
 ```
 
 ### 6. Payment Flow: Refund (Full Refund)
-
 ```bash
 curl -X POST http://localhost:8080/api/payments/refund \
   -H "Content-Type: application/json" \
@@ -404,7 +386,6 @@ curl -X POST http://localhost:8080/api/payments/refund \
 ```
 
 ### 7. Payment Flow: Partial Refund
-
 ```bash
 curl -X POST http://localhost:8080/api/payments/refund \
   -H "Content-Type: application/json" \
@@ -441,14 +422,12 @@ curl -X POST http://localhost:8080/api/payments/refund \
 ## API Endpoints Summary
 
 ### Authentication Endpoints
-
 - `POST /api/auth/register` - Register a new user
 - `POST /api/auth/login` - Login and get access token
 - `POST /api/auth/refresh` - Refresh access token
 - `POST /api/auth/logout` - Logout (revoke refresh tokens)
 
 ### Payment Endpoints
-
 - `POST /api/payments/purchase` - Process a purchase (authorize + capture)
 - `POST /api/payments/authorize` - Authorize a payment (hold funds)
 - `POST /api/payments/capture` - Capture previously authorized funds
@@ -460,7 +439,6 @@ All payment endpoints require:
 - `X-Idempotency-Key: <unique-key>` header (optional but recommended)
 
 ## Error Responses
-
 The API returns structured error responses:
 
 ```json
@@ -485,13 +463,11 @@ Common HTTP status codes:
 ## Local Development
 
 ### Prerequisites
-
 - JDK 17+
 - Maven 3.8+
 - PostgreSQL 15+ (or use Docker)
 
 ### Setup
-
 1. **Configure Database**: Update `application.yml` with your database credentials
 
 2. **Configure Authorize.Net**: Set environment variables or update `application.yml`
@@ -512,7 +488,6 @@ Common HTTP status codes:
    ```
 
 ## Project Structure
-
 ```
 src/
 ├── main/
@@ -532,7 +507,6 @@ src/
 ```
 
 ## Security Considerations
-
 - **JWT Tokens**: Access tokens expire in 15 minutes (configurable)
 - **Refresh Tokens**: Valid for 7 days (configurable)
 - **Password Encryption**: BCrypt hashing
@@ -541,7 +515,6 @@ src/
 - **JWT Secret**: Use a strong, randomly generated secret in production (minimum 32 characters)
 
 ## Database Schema
-
 The application uses the following main tables:
 
 - `users` - User accounts
@@ -552,7 +525,6 @@ The application uses the following main tables:
 See `ARCHITECTURE.md` for detailed database schema documentation.
 
 ## Contributing
-
 1. Fork the repository
 2. Create a feature branch
 3. Make your changes
@@ -561,9 +533,9 @@ See `ARCHITECTURE.md` for detailed database schema documentation.
 6. Submit a pull request
 
 ## License
-
 [Specify your license here]
 
 ## Support
-
 For issues and questions, please open an issue in the repository.
+
+comment added using Github MCP by antigravity
