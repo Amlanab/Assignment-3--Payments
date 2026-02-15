@@ -537,5 +537,3 @@ See `ARCHITECTURE.md` for detailed database schema documentation.
 
 ## Support
 For issues and questions, please open an issue in the repository.
-
-comment added using Github MCP by antigravity
